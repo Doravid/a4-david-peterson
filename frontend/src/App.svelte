@@ -15,10 +15,10 @@
   });
 </script>
 
-{#if loading}
-  <main class="container"><p>Loading...</p></main>
-{:else if user}
-  <Store {user} />
-{:else}
-  <Login />
+{#if !loading}
+  {#if user}
+    <Store {user} />
+  {:else}
+    <Login />
+  {/if}
 {/if}

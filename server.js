@@ -152,8 +152,11 @@ app.post('/api/buy/:id', ensureAuthenticated, async (req, res) => {
   res.json(result);
 });
 
-app.get('/api/user', ensureAuthenticated, (req, res) => {
-  res.json(req.user);
+app.get('/api/user', (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.json(req.user);
+  }
+  res.status(200).json(null);
 });
 
 
